@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import PageHeader from '../../components/PageHeader';
 import TeacherItem from '../../components/TeacherItem';
@@ -9,13 +9,24 @@ import './styles.css';
 
 
 function TeacherList() {
+
+    const [subject, setSubject] = useState('');
+    const [weekday, setWeekDay] = useState('');
+    const [time, setTime] = useState('');
+
+    function searchTeachers(){
+
+    }
+
     return (
         <div id="page-teacher-list" className="container">
             <PageHeader title="Estes são os proffys disponiveis">
-                <form id="search-teachers">
+                <form id="search-teachers" onSubmit={searchTeachers}>
                 <Select 
                         name="subject" 
                         label="Matéria"
+                        value={subject}
+                        onChange={(e) => {setSubject(e.target.value)}}
                         options={[
                             {value: 'Artes', label: 'Artes'},
                             {value: 'Matematica', label: 'Matemática'},
@@ -28,6 +39,8 @@ function TeacherList() {
                 <Select 
                         name="week-day" 
                         label="Dia da Semana"
+                        value={weekday}
+                        onChange={(e) => {setWeekDay(e.target.value)}}
                         options={[
                             {value: '0', label: 'Domingo'},
                             {value: '1', label: 'Segunda'},
@@ -38,7 +51,13 @@ function TeacherList() {
                             {value: '6', label: 'Sábado'},
                         ]}
                     />                    
-                    <Input type="time" name="time" label="Hora"/>                    
+                    <Input 
+                        type="time" 
+                        name="time" 
+                        label="Hora"
+                        value={time}
+                        onChange={(e) => {setTime(e.target.value) }}
+                    />                    
                 </form>
             </PageHeader>
 
